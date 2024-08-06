@@ -9,6 +9,14 @@ import { map, Observable } from 'rxjs';
 export class EmployeeService {
   constructor(private apiService: ApiService) {}
 
+  employees: Employee[] = [];
+  visibleEmployees!: Employee[];
+  sortedEmployees!: Employee[];
+
+  pageSize: number = 12;
+  page: number = 0;
+  total!: number;
+
   normalizeEmail(value: string): string {
     if (!value) return '';
 
@@ -49,9 +57,51 @@ export class EmployeeService {
       email: `${this.normalizeEmail(item.firstName)}.${this.normalizeEmail(
         item.lastName
       )}@gmail.com`,
+      phone: item.phone || '091 123 4567',
       jobTitle: item.jobTitle,
       dateOfBirth: this.normalizeDateOfBirth(item.dateOfBirth),
       image: item.image || 'avatar-placeholder.jpg',
     };
+  }
+
+  fetchEmployees() {
+    this.getEmployees(
+      'https://api.test.ulaznice.hr/paganini/api/job-interview/employees'
+    ).subscribe({
+      next: (data: Employee[]) => {
+        this.employees = data;
+        this.sortedEmployees = this.employees;
+        console.log(this.employees, this.total);
+        this.visibleEmployees = this.paginate(this.employees);
+        this.total = this.employees.length;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
+
+  paginate(data: Employee[]): Employee[] {
+    return data.slice(
+      this.page * this.pageSize,
+      this.page * this.pageSize + this.pageSize
+    );
+  }
+
+  previousPage() {
+    if (this.page != 0) {
+      this.page -= 1;
+      this.visibleEmployees = this.paginate(this.sortedEmployees);
+    }
+    return null;
+  }
+
+  nextPage() {
+    if (this.page != Math.ceil(this.total / this.pageSize) - 1) {
+      this.page += 1;
+
+      this.visibleEmployees = this.paginate(this.sortedEmployees);
+    }
+    return null;
   }
 }

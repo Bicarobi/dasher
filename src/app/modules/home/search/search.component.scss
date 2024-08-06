@@ -1,0 +1,39 @@
+.search-wrapper {
+  display: flex;
+  justify-content: flex-end;
+
+  padding: 0 15% 0 15%;
+
+  & .search-input-wrapper {
+    width: 300px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    border-radius: 4px;
+
+    padding: 5px 0px 5px 10px;
+    margin-right: 5px;
+
+    border: 1px solid #f4f4f4;
+
+    gap: 5px;
+
+    & input {
+      width: 100%;
+      border: none;
+      font-size: 14px;
+      color: #000000;
+    }
+
+    & input:focus {
+      outline: none;
+    }
+
+    & svg {
+      width: 16px;
+
+      color: #686868;
+    }
+  }
+}

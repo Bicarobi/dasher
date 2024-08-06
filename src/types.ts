@@ -40,6 +40,7 @@ export interface Employee {
   name: string;
   lastname: string;
   email: string;
+  phone: number;
   jobTitle: string;
   dateOfBirth: string;
   image: string;

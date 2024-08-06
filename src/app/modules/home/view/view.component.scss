@@ -1,0 +1,131 @@
+.view-wrapper {
+  width: 100%;
+  min-height: max-content;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  padding: 10px 15% 0 15%;
+
+  gap: 10px;
+
+  &:after {
+    content: "";
+    flex: auto;
+  }
+
+  & .card-wrapper {
+    width: calc(25% - 8px);
+
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+
+    gap: 10px;
+    border-radius: 8px;
+
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "left-side right-side"
+      "bottom-side bottom-side";
+
+    & .card-grid-top-left {
+      grid-area: left-side;
+      width: 100%;
+
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      flex-direction: column;
+
+      & img {
+        border-radius: 50%;
+        width: 50px;
+      }
+    }
+
+    & .card-grid-top-right {
+      grid-area: right-side;
+      width: 100%;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      & .name {
+        font-weight: 600;
+      }
+    }
+
+    & .card-grid-bottom {
+      grid-area: bottom-side;
+      width: 100%;
+      gap: 10px;
+
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+
+      & .email {
+        word-wrap: break-word;
+      }
+    }
+  }
+
+  .card-wrapper:hover {
+    scale: 1.05;
+  }
+}
+
+hr {
+  margin: 30px 15% 20px 15%;
+  border: 1px solid #f4f4f4;
+}
+
+.paginator-wrapper {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: row;
+
+  padding: 0 15%;
+
+  gap: 60px;
+
+  & .previous-button-wrapper,
+  .next-button-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: row;
+
+    color: #818181;
+
+    gap: 10px;
+
+    user-select: none;
+
+    cursor: pointer;
+
+    &:hover {
+      color: black;
+
+      & svg {
+        color: black;
+      }
+    }
+  }
+
+  & svg {
+    width: 20px;
+    color: #818181;
+  }
+}

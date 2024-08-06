@@ -1,1 +1,60 @@
-<p>view works!</p>
+<div class="view-wrapper">
+  <div
+    *ngFor="let employee of employeeService.visibleEmployees"
+    class="card-wrapper"
+  >
+    <div class="card-grid-top-left">
+      <img
+        [src]="'assets/images/' + employee.image"
+        alt="Employee Profile Photo"
+      />
+    </div>
+    <div class="card-grid-top-right">
+      <div class="name">{{ employee.name + " " + employee.lastname }}</div>
+      <div class="title">{{ employee.jobTitle }}</div>
+    </div>
+    <div class="card-grid-bottom">
+      <div class="email">Email: {{ employee.email }}</div>
+      <div class="phone">Tel: {{ employee.phone }}</div>
+      <div class="date">Datum rođenja: {{ employee.dateOfBirth }}</div>
+    </div>
+  </div>
+</div>
+<hr />
+<div class="paginator-wrapper">
+  <div class="previous-button-wrapper" (click)="employeeService.previousPage()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+      />
+    </svg>
+
+    <span>Prethodna</span>
+  </div>
+  <div class="next-button-wrapper" (click)="employeeService.nextPage()">
+    <span>Sljedeća</span>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      class="size-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
+      />
+    </svg>
+  </div>
+</div>

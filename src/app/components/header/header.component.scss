@@ -1,0 +1,22 @@
+.header-wrapper {
+  height: 80px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 30px 15%;
+
+  position: fixed;
+  top: 0;
+
+  background-color: white;
+
+  z-index: 100;
+
+  & a {
+    color: black;
+    text-decoration: none;
+  }
+}

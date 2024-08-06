@@ -1,0 +1,39 @@
+<div class="dropdown-menu-wrapper">
+  <div id="filter-button" #filterButton (click)="isDropdownActive = true">
+    <div class="button-wrapper">
+      {{ selectedFilter?.name || "Filter" }}
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+        *ngIf="selectedFilter"
+        (click)="selectedFilter = undefined; $event.stopImmediatePropagation()"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18 18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+    <div class="dropdown" [ngClass]="{ active: isDropdownActive }">
+      <ul>
+        <li *ngFor="let filter of filters">
+          <a
+            href="#"
+            (click)="
+              selectedFilter = filter;
+              isDropdownActive = false;
+              $event.stopImmediatePropagation()
+            "
+            >{{ filter.name }}</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
