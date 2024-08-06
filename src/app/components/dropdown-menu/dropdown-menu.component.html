@@ -1,7 +1,7 @@
 <div class="dropdown-menu-wrapper">
-  <div id="filter-button" #filterButton (click)="isDropdownActive = true">
+  <div id="dropdown-button" #button (click)="isDropdownActive = true">
     <div class="button-wrapper">
-      {{ selectedFilter?.name || "Filter" }}
+      {{ selectedOption?.name || dropdownName }}
 
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -10,8 +10,12 @@
         stroke-width="1.5"
         stroke="currentColor"
         class="size-6"
-        *ngIf="selectedFilter"
-        (click)="selectedFilter = undefined; $event.stopImmediatePropagation()"
+        *ngIf="selectedOption"
+        (click)="
+          selectedOption = undefined;
+          cleared();
+          $event.stopImmediatePropagation()
+        "
       >
         <path
           stroke-linecap="round"
@@ -22,15 +26,17 @@
     </div>
     <div class="dropdown" [ngClass]="{ active: isDropdownActive }">
       <ul>
-        <li *ngFor="let filter of filters">
+        <li *ngFor="let option of options">
           <a
             href="#"
             (click)="
-              selectedFilter = filter;
+              selectedOption = option;
+              clicked();
+              log(selectedOption);
               isDropdownActive = false;
               $event.stopImmediatePropagation()
             "
-            >{{ filter.name }}</a
+            >{{ option.name }}</a
           >
         </li>
       </ul>

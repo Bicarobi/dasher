@@ -8,8 +8,4 @@ import { EmployeeService } from '../../../services/employee.service';
 })
 export class ViewComponent {
   constructor(public employeeService: EmployeeService) {}
-
-  ngOnInit() {
-    this.employeeService.fetchEmployees();
-  }
 }

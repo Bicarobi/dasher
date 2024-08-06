@@ -12,12 +12,14 @@ export class EmployeeService {
   employees: Employee[] = [];
   visibleEmployees!: Employee[];
   sortedEmployees!: Employee[];
+  filteredEmployees!: Employee[];
+  filters!: { name: string; value: string }[];
 
   pageSize: number = 12;
   page: number = 0;
   total!: number;
 
-  normalizeEmail(value: string): string {
+  normalizeValue(value: string): string {
     if (!value) return '';
 
     return value
@@ -54,7 +56,7 @@ export class EmployeeService {
       id: item.id,
       name: item.firstName,
       lastname: item.lastName,
-      email: `${this.normalizeEmail(item.firstName)}.${this.normalizeEmail(
+      email: `${this.normalizeValue(item.firstName)}.${this.normalizeValue(
         item.lastName
       )}@gmail.com`,
       phone: item.phone || '091 123 4567',
@@ -71,14 +73,30 @@ export class EmployeeService {
       next: (data: Employee[]) => {
         this.employees = data;
         this.sortedEmployees = this.employees;
+        this.filteredEmployees = this.employees;
         console.log(this.employees, this.total);
         this.visibleEmployees = this.paginate(this.employees);
+        this.filters = this.getFilters(this.employees);
         this.total = this.employees.length;
       },
       error: (error) => {
         console.log(error);
       },
     });
+  }
+
+  getFilters(employees: Employee[]) {
+    const jobTitles = employees.map((employee) => employee.jobTitle);
+    const uniqueJobTitles = Array.from(new Set(jobTitles));
+    return uniqueJobTitles.map((jobTitle) => ({
+      name: jobTitle,
+      value: jobTitle,
+    }));
+  }
+
+  filterEmployeesByJobTitle(employees: Employee[], jobTitle: string) {
+    if (jobTitle == undefined) return employees;
+    return employees.filter((employee) => employee.jobTitle === jobTitle);
   }
 
   paginate(data: Employee[]): Employee[] {
@@ -91,17 +109,15 @@ export class EmployeeService {
   previousPage() {
     if (this.page != 0) {
       this.page -= 1;
-      this.visibleEmployees = this.paginate(this.sortedEmployees);
+      this.visibleEmployees = this.paginate(this.filteredEmployees);
     }
-    return null;
   }
 
   nextPage() {
     if (this.page != Math.ceil(this.total / this.pageSize) - 1) {
       this.page += 1;
 
-      this.visibleEmployees = this.paginate(this.sortedEmployees);
+      this.visibleEmployees = this.paginate(this.filteredEmployees);
     }
-    return null;
   }
 }

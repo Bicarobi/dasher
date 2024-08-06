@@ -1,12 +1,11 @@
 .header-wrapper {
-  height: 80px;
+  height: max-content;
   width: 100%;
 
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 30px 15%;
+  justify-content: space-between;
+  padding: 5px 15%;
 
   position: fixed;
   top: 0;
@@ -15,8 +14,19 @@
 
   z-index: 100;
 
-  & a {
-    color: black;
-    text-decoration: none;
+  & img {
+    height: 80px;
+  }
+
+  & .links-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+
+    & a {
+      color: black;
+      text-decoration: none;
+    }
   }
 }
