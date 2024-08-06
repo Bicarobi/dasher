@@ -1,9 +1,9 @@
 .header-wrapper {
-  height: max-content;
+  height: 80px;
   width: 100%;
 
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   padding: 5px 15%;
 
@@ -15,18 +15,36 @@
   z-index: 100;
 
   & img {
-    height: 80px;
+    height: 60px;
   }
 
   & .links-wrapper {
+    height: 100%;
+
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
     gap: 10px;
 
     & a {
-      color: black;
+      color: #929292;
+      font-weight: 500;
       text-decoration: none;
+      padding: 0 3px;
+
+      &.active {
+        color: var(--color2);
+        border-bottom: 1px solid;
+        border-color: var(--color1);
+
+        &:hover {
+          padding-bottom: 0px;
+        }
+      }
+
+      &:hover {
+        padding-bottom: 5px;
+      }
     }
   }
 }

@@ -1,24 +1,32 @@
 <div class="view-wrapper">
   <div
-    *ngFor="let employee of employeeService.visibleEmployees"
-    class="card-wrapper"
+    *ngIf="employeeService.visibleEmployees.length; else noResult"
+    class="cards-wrapper"
   >
-    <div class="card-grid-top-left">
-      <img
-        [src]="'assets/images/' + employee.image"
-        alt="Employee Profile Photo"
-      />
-    </div>
-    <div class="card-grid-top-right">
-      <div class="name">{{ employee.name + " " + employee.lastname }}</div>
-      <div class="title">{{ employee.jobTitle }}</div>
-    </div>
-    <div class="card-grid-bottom">
-      <div class="email">Email: {{ employee.email }}</div>
-      <div class="phone">Tel: {{ employee.phone }}</div>
-      <div class="date">Datum rođenja: {{ employee.dateOfBirth }}</div>
+    <div
+      *ngFor="let employee of employeeService.visibleEmployees"
+      class="card-wrapper"
+    >
+      <div class="card-grid-top-left">
+        <img
+          [src]="'assets/images/' + employee.image"
+          alt="Employee Profile Photo"
+        />
+      </div>
+      <div class="card-grid-top-right">
+        <div class="name">{{ employee.name + " " + employee.lastname }}</div>
+        <div class="title">{{ employee.jobTitle }}</div>
+      </div>
+      <div class="card-grid-bottom">
+        <div class="email">Email: {{ employee.email }}</div>
+        <div class="phone">Tel: {{ employee.phone }}</div>
+        <div class="date">Datum rođenja: {{ employee.dateOfBirth }}</div>
+      </div>
     </div>
   </div>
+  <ng-template #noResult>
+    <div>Nema rezultata.</div>
+  </ng-template>
 </div>
 <hr />
 <div class="paginator-wrapper">

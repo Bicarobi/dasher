@@ -53,6 +53,7 @@ export class SearchComponent {
   }
 
   filterEmployees() {
+    this.employeeService.page = 0;
     this.employeeService.filteredEmployees =
       this.employeeService.filterEmployeesByJobTitle(
         this.employeeService.sortedEmployees,

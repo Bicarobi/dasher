@@ -1,0 +1,57 @@
+<div class="form-wrapper">
+  <form
+    [formGroup]="employeeForm"
+    style="display: flex; flex-direction: column"
+  >
+    <label>
+      Ime:
+      <input type="text" [formControl]="employeeForm.controls.name" />
+    </label>
+    <label>
+      Prezime:
+      <input type="text" [formControl]="employeeForm.controls.lastname" />
+    </label>
+    <label>
+      Email:
+      <input type="text" [formControl]="employeeForm.controls.email" />
+    </label>
+    <label>
+      Telefon:
+      <input type="number" [formControl]="employeeForm.controls.phone" />
+    </label>
+    <label>
+      Radno mjesto:
+      <input type="text" [formControl]="employeeForm.controls.jobTitle" />
+    </label>
+    <label>
+      Datum rođenja:
+      <input type="date" [formControl]="employeeForm.controls.dateOfBirth" />
+    </label>
+    <button type="submit" [disabled]="!employeeForm.valid">
+      Submit Application
+    </button>
+  </form>
+  <div style="width: 100%">
+    @if (!employeeForm.valid){
+    <div
+      style="
+        width: 300px;
+        margin: auto;
+        padding: 20px;
+        background-color: palegoldenrod;
+      "
+    >
+      <b>Validation errors</b>
+      <ol>
+        @if (employeeForm.controls.name.errors?.['minlength'] ??
+        employeeForm.controls.name.errors?.['required']){
+        <li>The first name is not long enough, or not specified.</li>
+        } @if (employeeForm.controls.lastname.errors?.['minlength'] ??
+        employeeForm.controls.lastname.errors?.['required']){
+        <li>The last name is not long enough, or not specified.</li>
+        }
+      </ol>
+    </div>
+    }
+  </div>
+</div>
