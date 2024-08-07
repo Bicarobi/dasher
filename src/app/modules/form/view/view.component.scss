@@ -1,5 +1,15 @@
+@import "../../../variables.scss";
+
 .view-wrapper {
   padding-top: 200px;
 
   min-height: 100vh;
+
+  @media #{$mobile4} {
+    padding-top: 150px;
+  }
+
+  @media #{$mobile} {
+    padding-top: 100px;
+  }
 }
