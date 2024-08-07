@@ -6,6 +6,18 @@
   align-items: flex-end;
   padding: 0 15% 0 15%;
 
+  @media #{$mobile3} {
+    padding: 10px 10% 0 10%;
+  }
+
+  @media #{$mobile2} {
+    padding: 10px 5% 0 5%;
+  }
+
+  @media #{$mobile4} {
+    flex-wrap: wrap;
+  }
+
   @media #{$mobile} {
     padding: 0;
     margin-bottom: 10px;
@@ -15,8 +27,15 @@
     font-size: 24px;
     font-weight: 500;
 
+    @media #{$mobile4} {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
     @media #{$mobile} {
-      display: none;
+      font-size: 18px;
+      width: 100%;
+      margin-bottom: 5px;
     }
   }
 
@@ -24,6 +43,16 @@
     display: flex;
     flex-direction: row;
     width: 400px;
+
+    @media #{$mobile3} {
+    }
+
+    @media #{$mobile2} {
+    }
+
+    @media #{$mobile4} {
+      width: 100%;
+    }
 
     @media #{$mobile} {
       width: 100%;

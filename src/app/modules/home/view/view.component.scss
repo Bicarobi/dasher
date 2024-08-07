@@ -13,6 +13,14 @@
     flex: auto;
   } */
 
+  @media #{$mobile3} {
+    padding: 10px 10% 0 10%;
+  }
+
+  @media #{$mobile2} {
+    padding: 10px 5% 0 5%;
+  }
+
   @media #{$mobile} {
     padding: 0;
   }
@@ -21,6 +29,10 @@
     text-align: center;
     margin-top: 20px;
     font-size: 20px;
+
+    @media #{$mobile} {
+      font-size: 16px;
+    }
   }
 
   & .cards-wrapper {
@@ -28,6 +40,14 @@
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+
+    @media #{$mobile2} {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    @media #{$mobile4} {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     @media #{$mobile} {
       grid-template-columns: repeat(2, 1fr);
@@ -117,7 +137,7 @@ hr {
   border: 1px solid #f4f4f4;
 
   @media #{$mobile} {
-    margin: 30px 0px 20px 0px;
+    margin: 10px 0px 20px 0px;
   }
 }
 
@@ -148,6 +168,10 @@ hr {
 
     cursor: pointer;
 
+    @media #{$mobile} {
+      font-size: 14px;
+    }
+
     &:hover {
       color: var(--color-blue-1);
 
@@ -160,5 +184,9 @@ hr {
   & svg {
     width: 18px;
     color: #818181;
+
+    @media #{$mobile} {
+      width: 16px;
+    }
   }
 }
