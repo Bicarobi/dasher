@@ -33,11 +33,21 @@ export class SearchComponent {
             return searchTerms.every((term) => fullName.includes(term));
           })
           .sort((a, b) => {
-            const nameA = `${a.name} ${a.lastname}`.toLowerCase();
-            const nameB = `${b.name} ${b.lastname}`.toLowerCase();
-            if (nameA < nameB) return -1;
-            if (nameA > nameB) return 1;
-            return 0;
+            if (this.employeeService.ascending) {
+              if (a.name < b.name) return -1;
+              if (a.name > b.name) return 1;
+
+              if (a.lastname < b.lastname) return -1;
+              if (a.lastname > b.lastname) return 1;
+              return 0;
+            } else {
+              if (a.name > b.name) return -1;
+              if (a.name < b.name) return 1;
+
+              if (a.lastname > b.lastname) return -1;
+              if (a.lastname < b.lastname) return 1;
+              return 0;
+            }
           });
     }
 
@@ -59,6 +69,12 @@ export class SearchComponent {
         this.employeeService.sortedEmployees,
         this.selectedOption
       );
-    console.log(this.employeeService.filteredEmployees);
+    /* console.log(this.employeeService.filteredEmployees); */
+  }
+
+  sortByName() {
+    this.employeeService.ascending = !this.employeeService.ascending;
+    this.employeeService.sortEmployees();
+    this.sortEmployees();
   }
 }

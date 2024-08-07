@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { SearchComponent } from './search/search.component';
 import { FormsModule } from '@angular/forms';
 import { DropdownMenuComponent } from '../../components/dropdown-menu/dropdown-menu.component';
+import { BreakEmailPipe } from '../../pipes/break-email.pipe';
 
 @NgModule({
   declarations: [ViewComponent, HomeComponent, SearchComponent],
@@ -17,6 +18,7 @@ import { DropdownMenuComponent } from '../../components/dropdown-menu/dropdown-m
     HttpClientModule,
     FormsModule,
     DropdownMenuComponent,
+    BreakEmailPipe,
   ],
 })
 export class HomeModule {}

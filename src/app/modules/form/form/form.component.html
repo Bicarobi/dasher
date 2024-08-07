@@ -1,4 +1,6 @@
 <div class="form-wrapper">
+  <div class="form-title">Unos novog zaposlenika</div>
+  <br />
   <form [formGroup]="employeeForm" (ngSubmit)="submit()">
     <div>
       <label>Ime</label>
@@ -45,10 +47,17 @@
       }
     </div>
     <div>
-      <label>Radno mjesto</label>
-      <br />
-      <input type="text" [formControl]="employeeForm.controls.jobTitle" />
-
+      <div class="job-wrapper">
+        <label>Radno mjesto</label>
+        <!-- <br /> -->
+        <!-- <input type="text" [formControl]="employeeForm.controls.jobTitle" /> -->
+        <app-dropdown-menu
+          [dropdownName]="'Odabir'"
+          [options]="jobs"
+          (selectedOptionEmit)="selectedJob = $event.value; jobChosen()"
+          (clearedOptionEmit)="selectedJob = undefined; jobChosen()"
+        ></app-dropdown-menu>
+      </div>
       @if (submittedWithErrors &&
       employeeForm.controls.jobTitle.errors?.['required']){
       <div class="error">Odaberite radno mjesto.</div>
@@ -64,10 +73,40 @@
       <div class="error">Odaberite datum rođenja.</div>
       }
     </div>
-    <div>
-      <label>Slika</label>
-      <br />
-      <input type="file" [formControl]="employeeForm.controls.image" />
+    <div class="upload-wrapper">
+      <div class="upload-button-wrapper">
+        <label for="uploadButton">Prenesi profilnu sliku </label>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-6"
+          *ngIf="employeeForm.controls.image.value"
+          (click)="fileChosen(undefined); $event.stopImmediatePropagation()"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+
+      <input
+        type="file"
+        id="uploadButton"
+        [formControl]="employeeForm.controls.image"
+        hidden
+        (change)="fileChosen($event)"
+      />
+      @if (submittedWithErrors &&
+      employeeForm.controls.image.errors?.['required']) {
+      <span class="error">Nije odabrana datoteka.</span>} @else if
+      (!employeeForm.controls.image.errors?.['required']) {
+      <span id="file-chosen">{{ chosenFile }}</span
+      >}
     </div>
     <!-- <button type="submit" [disabled]="!employeeForm.valid">Spremi</button> -->
     <button type="submit">Spremi</button>

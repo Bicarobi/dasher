@@ -1,3 +1,5 @@
+@import "../../../variables.scss";
+
 .view-wrapper {
   width: 100%;
   min-height: max-content;
@@ -11,11 +13,25 @@
     flex: auto;
   } */
 
+  @media #{$mobile} {
+    padding: 0;
+  }
+
+  & .no-result {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 20px;
+  }
+
   & .cards-wrapper {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
+
+    @media #{$mobile} {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     & .card-wrapper {
       width: 100%;
@@ -45,6 +61,10 @@
         & img {
           border-radius: 50%;
           width: 50px;
+
+          @media #{$mobile} {
+            width: 30px;
+          }
         }
       }
 
@@ -60,6 +80,10 @@
         & .name {
           font-weight: 600;
         }
+
+        @media #{$mobile} {
+          font-size: 12px;
+        }
       }
 
       & .card-grid-bottom {
@@ -73,7 +97,11 @@
         flex-direction: column;
 
         & .email {
-          word-wrap: break-word;
+          word-break: break-word;
+        }
+
+        @media #{$mobile} {
+          font-size: 11px;
         }
       }
     }
@@ -87,6 +115,10 @@
 hr {
   margin: 30px 15% 20px 15%;
   border: 1px solid #f4f4f4;
+
+  @media #{$mobile} {
+    margin: 30px 0px 20px 0px;
+  }
 }
 
 .paginator-wrapper {

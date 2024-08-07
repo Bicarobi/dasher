@@ -1,11 +1,14 @@
+@import "../../variables.scss";
+
 .dropdown-menu-wrapper {
-  display: flex;
+  /*  display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
+  width: max-content;
 
   & #dropdown-button {
     border: 1px solid;
-    border-color: var(--color-gray2);
+    border-color: var(--color-gray-2);
     background-color: white;
     padding: 4px 10px;
     display: inline-block;
@@ -35,7 +38,7 @@
 
   & .dropdown {
     border: 1px solid;
-    border-color: var(--color-gray2);
+    border-color: var(--color-gray-2);
     position: absolute;
     width: max-content;
     height: max-content;
@@ -65,7 +68,7 @@
         padding: 10px 20px;
         display: block;
         border-bottom: 1px solid;
-        border-color: var(--color-gray2);
+        border-color: var(--color-gray-2);
 
         &:hover {
           background-color: #f8f8f8;

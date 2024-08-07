@@ -14,6 +14,7 @@ export class EmployeeService {
   sortedEmployees!: Employee[];
   filteredEmployees!: Employee[];
   filters!: { name: string; value: string }[];
+  ascending: boolean = true;
 
   pageSize: number = 12;
   page: number = 0;
@@ -72,6 +73,8 @@ export class EmployeeService {
     ).subscribe({
       next: (data: Employee[]) => {
         this.employees = data;
+        this.sortEmployees();
+
         this.sortedEmployees = this.employees;
         this.filteredEmployees = this.employees;
         console.log(this.employees, this.total);
@@ -85,13 +88,42 @@ export class EmployeeService {
     });
   }
 
+  sortEmployees() {
+    this.employees.sort((a, b) => {
+      if (this.ascending) {
+        if (a.name < b.name) return -1;
+        if (a.name > b.name) return 1;
+
+        if (a.lastname < b.lastname) return -1;
+        if (a.lastname > b.lastname) return 1;
+        return 0;
+      } else {
+        if (a.name > b.name) return -1;
+        if (a.name < b.name) return 1;
+
+        if (a.lastname > b.lastname) return -1;
+        if (a.lastname < b.lastname) return 1;
+        return 0;
+      }
+    });
+  }
+
   getFilters(employees: Employee[]) {
     const jobTitles = employees.map((employee) => employee.jobTitle);
     const uniqueJobTitles = Array.from(new Set(jobTitles));
-    return uniqueJobTitles.map((jobTitle) => ({
+
+    const filters = uniqueJobTitles.map((jobTitle) => ({
       name: jobTitle,
       value: jobTitle,
     }));
+
+    filters.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+
+    return filters;
   }
 
   filterEmployeesByJobTitle(employees: Employee[], jobTitle: string) {

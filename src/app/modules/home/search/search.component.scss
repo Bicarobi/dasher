@@ -1,12 +1,33 @@
+@import "../../../variables.scss";
+
 .search-wrapper {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: flex-end;
   padding: 0 15% 0 15%;
+
+  @media #{$mobile} {
+    padding: 0;
+    margin-bottom: 10px;
+  }
+
+  & .search-title {
+    font-size: 24px;
+    font-weight: 500;
+
+    @media #{$mobile} {
+      display: none;
+    }
+  }
 
   & .combined-wrapper {
     display: flex;
     flex-direction: row;
-    width: 350px;
+    width: 400px;
+
+    @media #{$mobile} {
+      width: 100%;
+    }
 
     & .search-input-wrapper {
       width: 100%;
@@ -20,15 +41,23 @@
       margin-right: 5px;
 
       border: 1px solid;
-      border-color: var(--color-gray2);
+      border-color: var(--color-gray-2);
 
       gap: 5px;
+
+      @media #{$mobile} {
+        width: 100%;
+      }
 
       & input {
         width: max-content;
         border: none;
         font-size: 14px;
         color: #000000;
+
+        @media #{$mobile} {
+          width: 100%;
+        }
       }
 
       & input:focus {
@@ -44,6 +73,29 @@
         width: 18px;
         color: #8b8b8b;
         cursor: pointer;
+      }
+    }
+
+    & .sort-wrapper {
+      width: max-content;
+      padding: 0 5px;
+      margin-left: 5px;
+
+      display: flex;
+      align-items: center;
+
+      border: 1px solid;
+      border-color: var(--color-gray-2);
+      border-radius: 4px;
+
+      cursor: pointer;
+
+      &:hover {
+        background-color: #f8f8f8;
+      }
+
+      & svg {
+        width: 18px;
       }
     }
   }

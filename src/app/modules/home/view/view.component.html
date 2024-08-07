@@ -18,14 +18,17 @@
         <div class="title">{{ employee.jobTitle }}</div>
       </div>
       <div class="card-grid-bottom">
-        <div class="email">Email: {{ employee.email }}</div>
+        <div
+          class="email"
+          [innerHTML]="'Email: ' + (employee.email | breakEmail)"
+        ></div>
         <div class="phone">Tel: {{ employee.phone }}</div>
         <div class="date">Datum rođenja: {{ employee.dateOfBirth }}</div>
       </div>
     </div>
   </div>
   <ng-template #noResult>
-    <div>Nema rezultata.</div>
+    <div class="no-result">Nema rezultata.</div>
   </ng-template>
 </div>
 <hr />
