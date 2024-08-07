@@ -4,7 +4,8 @@
   align-items: center;
 
   & #dropdown-button {
-    border: 1px solid #f4f4f4;
+    border: 1px solid;
+    border-color: var(--color-gray2);
     background-color: white;
     padding: 4px 10px;
     display: inline-block;
@@ -33,7 +34,8 @@
   }
 
   & .dropdown {
-    border: 1px solid #f4f4f4;
+    border: 1px solid;
+    border-color: var(--color-gray2);
     position: absolute;
     width: max-content;
     height: max-content;
@@ -62,7 +64,8 @@
         color: black;
         padding: 10px 20px;
         display: block;
-        border-bottom: 1px solid #f4f4f4;
+        border-bottom: 1px solid;
+        border-color: var(--color-gray2);
 
         &:hover {
           background-color: #f8f8f8;

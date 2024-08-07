@@ -117,10 +117,10 @@ hr {
     cursor: pointer;
 
     &:hover {
-      color: var(--color1);
+      color: var(--color-blue-1);
 
       & svg {
-        color: var(--color1);
+        color: var(--color-blue-1);
       }
     }
   }

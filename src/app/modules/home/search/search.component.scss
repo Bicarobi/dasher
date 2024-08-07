@@ -19,7 +19,8 @@
       padding: 4px 10px;
       margin-right: 5px;
 
-      border: 1px solid #f4f4f4;
+      border: 1px solid;
+      border-color: var(--color-gray2);
 
       gap: 5px;
 

@@ -1,57 +1,75 @@
 <div class="form-wrapper">
-  <form
-    [formGroup]="employeeForm"
-    style="display: flex; flex-direction: column"
-  >
-    <label>
-      Ime:
+  <form [formGroup]="employeeForm" (ngSubmit)="submit()">
+    <div>
+      <label>Ime</label>
+      <br />
       <input type="text" [formControl]="employeeForm.controls.name" />
-    </label>
-    <label>
-      Prezime:
-      <input type="text" [formControl]="employeeForm.controls.lastname" />
-    </label>
-    <label>
-      Email:
-      <input type="text" [formControl]="employeeForm.controls.email" />
-    </label>
-    <label>
-      Telefon:
-      <input type="number" [formControl]="employeeForm.controls.phone" />
-    </label>
-    <label>
-      Radno mjesto:
-      <input type="text" [formControl]="employeeForm.controls.jobTitle" />
-    </label>
-    <label>
-      Datum rođenja:
-      <input type="date" [formControl]="employeeForm.controls.dateOfBirth" />
-    </label>
-    <button type="submit" [disabled]="!employeeForm.valid">
-      Submit Application
-    </button>
-  </form>
-  <div style="width: 100%">
-    @if (!employeeForm.valid){
-    <div
-      style="
-        width: 300px;
-        margin: auto;
-        padding: 20px;
-        background-color: palegoldenrod;
-      "
-    >
-      <b>Validation errors</b>
-      <ol>
-        @if (employeeForm.controls.name.errors?.['minlength'] ??
-        employeeForm.controls.name.errors?.['required']){
-        <li>The first name is not long enough, or not specified.</li>
-        } @if (employeeForm.controls.lastname.errors?.['minlength'] ??
-        employeeForm.controls.lastname.errors?.['required']){
-        <li>The last name is not long enough, or not specified.</li>
-        }
-      </ol>
+
+      @if (submittedWithErrors &&
+      (employeeForm.controls.name.errors?.['minlength'] ||
+      employeeForm.controls.name.errors?.['required'])){
+      <div class="error">Ime mora sadržavati najmanje 3 znaka.</div>
+      }
     </div>
-    }
-  </div>
+    <div>
+      <label>Prezime</label>
+      <br />
+      <input type="text" [formControl]="employeeForm.controls.lastname" />
+
+      @if (submittedWithErrors &&
+      (employeeForm.controls.lastname.errors?.['minlength'] ||
+      employeeForm.controls.lastname.errors?.['required'])){
+      <div class="error">Prezime mora sadržavati najmanje 3 znaka.</div>
+      }
+    </div>
+    <div>
+      <label>Email</label>
+      <br />
+      <input type="text" [formControl]="employeeForm.controls.email" />
+
+      @if (submittedWithErrors && (
+      employeeForm.controls.email.errors?.['required'] ||
+      employeeForm.controls.email.errors?.['email'])){
+      <div class="error">Unesite valjanu email adresu.</div>
+      }
+    </div>
+    <div>
+      <label>Telefon</label>
+      <br />
+      <input type="text" [formControl]="employeeForm.controls.phone" />
+
+      @if (submittedWithErrors &&
+      (employeeForm.controls.phone.errors?.['pattern'] ||
+      employeeForm.controls.phone.errors?.['required'])){
+      <div class="error">Unesite valjani broj telefona.</div>
+      }
+    </div>
+    <div>
+      <label>Radno mjesto</label>
+      <br />
+      <input type="text" [formControl]="employeeForm.controls.jobTitle" />
+
+      @if (submittedWithErrors &&
+      employeeForm.controls.jobTitle.errors?.['required']){
+      <div class="error">Odaberite radno mjesto.</div>
+      }
+    </div>
+    <div>
+      <div class="date-wrapper">
+        <label>Datum rođenja</label>
+        <input type="date" [formControl]="employeeForm.controls.dateOfBirth" />
+      </div>
+      @if (submittedWithErrors &&
+      employeeForm.controls.dateOfBirth.errors?.['required']){
+      <div class="error">Odaberite datum rođenja.</div>
+      }
+    </div>
+    <div>
+      <label>Slika</label>
+      <br />
+      <input type="file" [formControl]="employeeForm.controls.image" />
+    </div>
+    <!-- <button type="submit" [disabled]="!employeeForm.valid">Spremi</button> -->
+    <button type="submit">Spremi</button>
+  </form>
 </div>
