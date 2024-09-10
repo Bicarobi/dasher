@@ -7,7 +7,7 @@
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
-  padding: 5px 15%;
+  padding: 10px 15% 0 15%;
 
   position: fixed;
   top: 0;
@@ -17,15 +17,15 @@
   z-index: 100;
 
   @media #{$mobile3} {
-    padding: 5px 10% 0 10%;
+    padding: 10px 10% 0 10%;
   }
 
   @media #{$mobile2} {
-    padding: 5px 5% 0 5%;
+    padding: 10px 5% 0 5%;
   }
 
   @media #{$mobile4} {
-    padding: 5px 10px;
+    padding: 10px 5%;
   }
 
   @media #{$mobile} {
@@ -33,10 +33,10 @@
   }
 
   & img {
-    height: 60px;
+    height: 40px;
 
     @media #{$mobile} {
-      height: 40px;
+      height: 20px;
     }
   }
 
